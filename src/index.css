@@ -1,0 +1,213 @@
+/* ===== Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Design Tokens — Light Mode ===== */
+:root {
+  --bg:              #f8f7ff;
+  --bg-card:         rgba(255, 255, 255, 0.7);
+  --bg-subtle:       #f1edff;
+  --glass-bg:        rgba(255, 255, 255, 0.7);
+  --glass-border:    rgba(255, 255, 255, 0.65);
+  --glass-hover-bg:  rgba(255, 255, 255, 0.85);
+  --glass-hover-border: rgba(255, 255, 255, 0.9);
+  --text-primary:    #1c1c1e;
+  --text-secondary:  #6c6c70;
+  --text-muted:      #9ca3af;
+  --accent:          #7c3aed;
+  --accent-light:    #f3e8ff;
+  --accent-border:   rgba(124, 58, 237, 0.12);
+  --shadow-sm:       inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 2px 10px rgba(31, 38, 135, 0.02);
+  --shadow-md:       inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 8px 32px rgba(31, 38, 135, 0.05);
+  --shadow-lg:       inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 20px 50px rgba(31, 38, 135, 0.08);
+}
+
+/* ===== Base ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f0eeff; }
+::-webkit-scrollbar-thumb { background: rgba(124, 58, 237, 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(124, 58, 237, 0.45); }
+
+/* ===== Glass Utility ===== */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: var(--shadow-md);
+}
+
+.glass-hover {
+  transition: background 0.3s ease, border-color 0.3s ease,
+              box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: var(--glass-hover-bg);
+  border-color: var(--glass-hover-border);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===== Gradient Text ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #db2777 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Tech Chip ===== */
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--accent-light);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  letter-spacing: 0.01em;
+}
+
+/* ===== Glow (light mode — subtle drop shadow glow) ===== */
+.glow-purple {
+  box-shadow: 0 0 0 1px rgba(124,58,237,0.15), 0 8px 32px rgba(124,58,237,0.10);
+}
+
+/* ===== Reveal animation ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Admin sidebar dark panel ===== */
+.admin-sidebar {
+  background: #1e1b4b;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ===== Input styles (light) ===== */
+.input-light {
+  background: #ffffff;
+  border: 1px solid rgba(139,92,246,0.2);
+  color: #1e1b4b;
+  border-radius: 0.75rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  outline: none;
+}
+.input-light::placeholder { color: #9ca3af; }
+.input-light:focus {
+  border-color: rgba(124,58,237,0.45);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.08);
+}
+
+/* ===== Select styles (light) ===== */
+select.input-light { cursor: pointer; }
+
+/* ===== 3D Flipbook Page Turn Effect ===== */
+.book-container {
+  perspective: 1500px;
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+}
+
+.book-shadow {
+  box-shadow: 0 30px 70px rgba(124, 58, 237, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.page {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  z-index: 10;
+}
+
+.page-left {
+  left: 0;
+  transform-origin: right center;
+}
+
+.page-right {
+  left: 50%;
+  transform-origin: left center;
+}
+
+.page-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.page-face-back {
+  transform: rotateY(180deg);
+}
+
+.page-turned-left {
+  transform: rotateY(-180deg);
+}
+
+.page-turned-right {
+  transform: rotateY(180deg);
+}
+
+.book-spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 16px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right,
+    rgba(0,0,0,0.05) 0%,
+    rgba(255,255,255,0.2) 25%,
+    rgba(0,0,0,0.15) 50%,
+    rgba(255,255,255,0.2) 75%,
+    rgba(0,0,0,0.05) 100%
+  );
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  z-index: 30;
+  pointer-events: none;
+}
+
