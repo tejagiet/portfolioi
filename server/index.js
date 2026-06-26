@@ -270,3 +270,5 @@ app.listen(PORT, () => {
   console.log(`\n  TEJA API  →  http://localhost:${PORT}`)
   console.log(`  DB: ${process.env.DATABASE_URL ? 'Neon connected' : 'DATABASE_URL not set (graceful mode active)'}`)
 })
+
+export default app
