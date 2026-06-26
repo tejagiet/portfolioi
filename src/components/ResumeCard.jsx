@@ -51,7 +51,7 @@ export default function ResumeCard({ profile }) {
         {/* --- Desktop 3D Book Layout --- */}
         <div className="hidden md:block">
           {resumeUrl ? (
-            <div className="book-container max-w-[780px] h-[590px] mx-auto relative select-none">
+            <div className="book-container max-w-[834px] h-[590px] mx-auto relative select-none">
 
               {/* Book base wrapper */}
               <div className="book w-full h-full relative">
