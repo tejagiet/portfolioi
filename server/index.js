@@ -49,7 +49,11 @@ app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:4173'] }))
 app.use(express.json())
 
 const uploadsDir = path.join(__dirname, '../public/uploads/resumes')
-if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true })
+try {
+  if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true })
+} catch (e) {
+  console.warn('⚠ Could not create uploads directory (expected on Vercel)')
+}
 app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')))
 
 // ── JWT Auth Middleware ─────────────────────────────────────────────────────
